@@ -64,7 +64,7 @@ const isCurrentPage = (href: string) => {
 			<div class="socials">
 				{
 					iconLinks.map(({ href, icon, label, lucideIcon }) => (
-						<a href={href} class="social">
+						<a href={href} class="social" target="_blank" rel="noopener noreferrer">
 							<span class="sr-only">{label}</span>
 							{ icon && <Icon icon={icon} /> }
 							{ lucideIcon && <LucideIcon icon={lucideIcon} /> }
@@ -90,7 +90,7 @@ const isCurrentPage = (href: string) => {
 			<div class="socials">
 				{
 					iconLinks.map(({ href, icon, label, lucideIcon }) => (
-						<a href={href} class="social">
+						<a href={href} class="social" target="_blank" rel="noopener noreferrer">
 							<span class="sr-only">{label}</span>
 							{ icon && <Icon icon={icon} /> }
 							{ lucideIcon && <LucideIcon icon={lucideIcon} /> }
@@ -141,15 +141,61 @@ const isCurrentPage = (href: string) => {
 		}
 	}
 	customElements.define('menu-button', MenuButton);
+
+	// Add scroll effects
+	document.addEventListener('DOMContentLoaded', () => {
+		const nav = document.querySelector('nav');
+		let lastScrollY = window.scrollY;
+		
+		const handleScroll = () => {
+			const currentScrollY = window.scrollY;
+			
+			if (currentScrollY > 50) {
+				nav?.classList.add('scrolled');
+			} else {
+				nav?.classList.remove('scrolled');
+			}
+			
+			lastScrollY = currentScrollY;
+		};
+		
+		window.addEventListener('scroll', handleScroll);
+		
+		// Initialize on load
+		handleScroll();
+	});
 </script>
 
 <style>
 	nav {
 		z-index: 9999;
-		position: relative;
+		position: sticky;
+		top: 0;
 		font-family: var(--font-brand);
 		font-weight: 500;
 		margin-bottom: 3.5rem;
+		transition: all 0.3s ease;
+	}
+
+	nav::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		opacity: 0.95;
+		z-index: -1;
+	}
+
+	nav.scrolled {
+		backdrop-filter: blur(10px);
+		box-shadow: var(--shadow-lg);
+		border-bottom: 1px solid var(--gray-700);
+	}
+
+	nav.scrolled::before {
+		opacity: 0.98;
 	}
 
 	.menu-header {
