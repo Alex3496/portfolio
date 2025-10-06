@@ -5,54 +5,89 @@ import ContactCTA from '../components/ContactCTA.astro';
 import Hero from '../components/Hero.astro';
 ---
 
-<BaseLayout title="About | Jeanine White" description="About Jeanine White Lorem Ipsum">
+<BaseLayout title="About | Manuel A. Elizondo Tello" description="About Manuel A. Elizondo Tello - Full Stack Developer">
 	<div class="stack gap-20">
 		<main class="wrapper about">
 			<Hero
 				title="About"
-				tagline="Thanks for stopping by. Read below to learn more about myself and my background."
+				tagline={["Gracias por visitar mi sitio. Lee más sobre mi experiencia y trayectoria profesional."]}
 			>
 				<img
 					width="1553"
 					height="873"
 					src="/assets/at-work.jpg"
-					alt="Jeanine White at work with a colleague"
+					alt="Manuel A. Elizondo Tello trabajando en desarrollo web"
 				/>
 			</Hero>
 
 			<section>
-				<h2 class="section-title">Background</h2>
+				<h2 class="section-title">Resumen Profesional</h2>
 				<div class="content">
 					<p>
-						Lorem ipsum dolor sit amet, <a href="https://astro.build/">Astro</a> makes people happy.
-						Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin nibh nisl condimentum
-						id venenatis a condimentum vitae. Dapibus ultrices in iaculis nunc. Arcu odio ut sem nulla
-						pharetra diam sit amet. Diam quis enim lobortis scelerisque fermentum dui faucibus in ornare.
+						Soy un Full Stack JavaScript Developer con 5 años de experiencia construyendo soluciones web y móviles 
+						robustas utilizando el stack MERN. Mi experiencia abarca desde el desarrollo de sistemas ERP y plataformas 
+						de e-commerce hasta aplicaciones móviles y sistemas de inventarios.
 					</p>
 					<p>
-						Arcu dui vivamus arcu felis bibendum ut tristique et egestas. Eget gravida cum sociis
-						natoque penatibus. Cras fermentum odio eu feugiat pretium nibh. Proin nibh nisl
-						condimentum id venenatis. Porta nibh venenatis cras sed felis eget velit. Id diam vel
-						quam elementum pulvinar etiam non.
+						Actualmente trabajo en <strong>I See You Technologies</strong> donde lidero el desarrollo y mantenimiento 
+						de aplicaciones web y móviles utilizando React, Node.js, Express, React Native y MongoDB. He participado 
+						en la construcción de sistemas complejos incluyendo integración con APIs como Syncfy para stamping, 
+						plataformas de e-commerce con Square y Shopify, y sistemas de atención al cliente.
 					</p>
 					<p>
-						Ultrices tincidunt arcu non sodales neque sodales ut. Sed enim ut sem viverra aliquet
-						eget sit amet. Lacus luctus accumsan tortor posuere ac ut consequat semper viverra.
-						Viverra accumsan in nisl nisi scelerisque eu ultrices. In massa tempor nec feugiat nisl
-						pretium fusce.
+						Mi enfoque se centra en la optimización, escalabilidad y mejora continua de los productos, siempre 
+						trabajando en equipo para entregar soluciones que mejoren la experiencia del usuario. Participo 
+						activamente en todo el ciclo de vida del software, desde el levantamiento de requerimientos hasta 
+						el soporte técnico post-implementación.
 					</p>
 				</div>
 			</section>
 			<section>
-				<h2 class="section-title">Education</h2>
+				<h2 class="section-title">Educación</h2>
 				<div class="content">
-					<p>Corporis voluptates tenetur laudantium.</p>
+					<p>
+						<strong>Ingeniería en Sistemas Computacionales</strong><br>
+						Instituto Tecnológico de Tijuana | 2015 – 2020
+					</p>
+					<p>
+						Durante mi formación académica desarrollé una sólida base en programación, estructuras de datos, 
+						algoritmos y metodologías de desarrollo de software. Esta educación me proporcionó los fundamentos 
+						teóricos que complementan mi experiencia práctica en el desarrollo web y móvil.
+					</p>
 				</div>
 			</section>
 			<section>
-				<h2 class="section-title">Skills</h2>
+				<h2 class="section-title">Experiencia Profesional</h2>
 				<div class="content">
-					<p>officia unde omnis</p>
+					<p>
+						<strong>Full Stack Developer</strong> – I See You Technologies (CDMX/Tijuana)<br>
+						<em>Julio 2020 – Presente</em>
+					</p>
+					<ul>
+						<li>Desarrollo y mantenimiento de aplicaciones web y móviles con React, Node.js, Express, React Native y MongoDB</li>
+						<li>Construcción de sistemas ERP, inventarios, stamping (Syncfy API), y plataformas de e-commerce (Square, Shopify)</li>
+						<li>Participación activa en todo el ciclo de vida de software</li>
+						<li>Soporte técnico y levantamiento de requerimientos con clientes</li>
+						<li>Optimización de módulos existentes para mejorar la experiencia de usuario</li>
+						<li>Trabajo colaborativo en equipo para la entrega de soluciones escalables</li>
+					</ul>
+				</div>
+			</section>
+			<section>
+				<h2 class="section-title">Información de Contacto</h2>
+				<div class="content">
+					<p>
+						<strong>Ubicación:</strong> Tijuana, México<br>
+						<strong>Email:</strong> <a href="mailto:alejandro.tello.29v@gmail.com">alejandro.tello.29v@gmail.com</a><br>
+						<strong>Teléfono:</strong> +52 664 305 5335<br>
+						<strong>LinkedIn:</strong> <a href="https://linkedin.com/in/manuel-elizondo-887a7313a/" target="_blank">linkedin.com/in/manuel-elizondo-887a7313a/</a><br>
+						<strong>GitHub:</strong> <a href="https://github.com/Alex3496" target="_blank">github.com/Alex3496</a>
+					</p>
+					<p>
+						<strong>Idiomas:</strong><br>
+						• Español: Nativo<br>
+						• Inglés: Intermedio (B1)
+					</p>
 				</div>
 			</section>
 		</main>

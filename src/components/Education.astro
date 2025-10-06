@@ -1,0 +1,114 @@
+---
+import LucideIcon from './LucideIcon.astro';
+---
+
+<section class="education-section box">
+	<div class="stack gap-6">
+		<div class="section-header">
+			<h2>Education</h2>
+			<div class="divider"></div>
+		</div>
+		
+		<div class="education-content">
+			<div class="education-item">
+				<div class="education-icon">
+					<LucideIcon icon="graduation-cap" size="2rem" color="var(--accent-regular)" />
+				</div>
+				<div class="education-details">
+					<h3>Computer Systems Engineering</h3>
+					<p class="institution">Tijuana Institute of Technology</p>
+					<p class="period">2015 – 2020</p>
+					<p class="description">
+						Strong background in programming, data structures, algorithms and software development methods. 
+						This education gave me the theoretical foundation that supports my practical experience in web and mobile development.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.education-section {
+		border: 1px solid var(--gray-800);
+		border-radius: 1.5rem;
+		padding: 2.5rem;
+		background-color: var(--gray-999_40);
+		box-shadow: var(--shadow-sm);
+		margin: 3rem 0;
+	}
+
+	.section-header {
+		text-align: center;
+		margin-bottom: 2rem;
+	}
+
+	.section-header h2 {
+		font-size: var(--text-3xl);
+		color: var(--gray-0);
+		margin-bottom: 1rem;
+	}
+
+	.divider {
+		width: 4rem;
+		height: 2px;
+		background: var(--accent-regular);
+		margin: 0 auto;
+	}
+
+	.education-item {
+		display: flex;
+		gap: 1.5rem;
+		align-items: flex-start;
+	}
+
+	.education-icon {
+		flex-shrink: 0;
+		padding: 1rem;
+		background: var(--gradient-subtle);
+		border-radius: 1rem;
+		border: 1px solid var(--gray-800);
+	}
+
+	.education-details h3 {
+		font-size: var(--text-xl);
+		color: var(--gray-0);
+		margin-bottom: 0.5rem;
+	}
+
+	.institution {
+		font-size: var(--text-lg);
+		color: var(--accent-regular);
+		font-weight: 600;
+		margin-bottom: 0.25rem;
+	}
+
+	.period {
+		color: var(--gray-400);
+		font-size: var(--text-sm);
+		margin-bottom: 1rem;
+	}
+
+	.description {
+		color: var(--gray-300);
+		line-height: 1.6;
+	}
+
+	@media (min-width: 50em) {
+		.education-section {
+			padding: 3.5rem;
+		}
+
+		.section-header h2 {
+			font-size: var(--text-4xl);
+		}
+
+		.education-item {
+			gap: 2rem;
+		}
+
+		.education-details h3 {
+			font-size: var(--text-2xl);
+		}
+	}
+</style>
