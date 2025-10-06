@@ -1,4 +1,8 @@
-<div class="pill"><slot /></div>
+---
+ let { styles = '' } = Astro.props;
+---
+
+<div class="pill" style={styles}><slot /></div>
 
 <style>
 	.pill {
