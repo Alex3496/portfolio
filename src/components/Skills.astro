@@ -1,63 +1,277 @@
 ---
-import Icon from './Icon.astro';
-import LucideIcon from './LucideIcon.astro';
+import Icon from "./Icon.astro";
+import LucideIcon, { lucideIconPaths } from "./LucideIcon.astro";
+
+// Tipos opcionales para claridad
+type SkillItem = {
+	label: string;
+	imgSrc?: string; // Ruta a logo (svg/png) p. ej. /assets/logos/html.svg
+	lucide?: keyof typeof lucideIconPaths; // Nombre de icono para <LucideIcon />
+	emoji?: string; // Fallback emoji si no hay logo
+	alt?: string; // Alt accesible para la imagen
+	fill?: string; // Color de relleno para logos
+};
+
+type SkillSection = {
+	key: "frontend" | "backend" | "tools" | "learning";
+	title: string;
+	colorClass: string; // Colorea el título (ver CSS)
+	items: SkillItem[];
+};
+
+// ====== DATA ÚNICA ======
+const sections: SkillSection[] = [
+	{
+		key: "frontend",
+		title: "Frontend",
+		colorClass: "title-frontend",
+		items: [
+			{ label: "HTML", imgSrc: "/assets/logos/html5.svg", alt: "HTML5" },
+			{ label: "CSS", imgSrc: "/assets/logos/css3.svg", alt: "CSS3" },
+			{
+				label: "JavaScript",
+				imgSrc: "/assets/logos/javascript.svg",
+				alt: "JavaScript",
+			},
+			{
+				label: "TypeScript",
+				imgSrc: "/assets/logos/typescript.svg",
+				alt: "TypeScript",
+			},
+			{ label: "ReactJS", imgSrc: "/assets/logos/react.svg", alt: "React" },
+			{
+				label: "Tailwind",
+				imgSrc: "/assets/logos/tailwind.svg",
+				alt: "Tailwind CSS",
+			},
+			{ label: "SASS", imgSrc: "/assets/logos/sass.svg", alt: "SASS" },
+			{ label: "Figma", imgSrc: "/assets/logos/figma.svg", alt: "Figma" },
+		],
+	},
+	{
+		key: "backend",
+		title: "Backend",
+		colorClass: "title-backend",
+		items: [
+			{ label: "NodeJS", imgSrc: "/assets/logos/nodejs.svg", alt: "Node.js" },
+			{
+				label: "ExpressJS",
+				imgSrc: "/assets/logos/express.svg",
+				alt: "Express.js",
+			},
+			{
+				label: "mongoDB",
+				imgSrc: "/assets/logos/mongodb.svg",
+				alt: "MongoDB",
+			},
+			{ label: "Next.js", imgSrc: "/assets/logos/nextjs.svg", alt: "Next.js" },
+			{ label: "Apache", imgSrc: "/assets/logos/apache.svg", alt: "Apache" },
+		],
+	},
+	{
+		key: "tools",
+		title: "Herramientas",
+		colorClass: "title-tools",
+		items: [
+			{ label: "Git", imgSrc: "/assets/logos/git.svg", alt: "Git" },
+			{ label: "GitHub", imgSrc: "/assets/logos/github.svg", alt: "GitHub" },
+			{ label: "Terminal", imgSrc: "/assets/logos/terminal.svg", alt: "Terminal" },
+			{
+				label: "VSCode",
+				imgSrc: "/assets/logos/vscode.svg",
+				alt: "Visual Studio Code",
+			},
+			{ label: "npm", imgSrc: "/assets/logos/npm.svg", alt: "npm" },
+			{ label: "OpenAI", imgSrc: "/assets/logos/openai.svg", alt: "OpenAI", fill: "white" },
+			{
+				label: "Amazon Web Services",
+				imgSrc: "/assets/logos/aws.svg",
+				alt: "AWS",
+			},
+		],
+	},
+	{
+		key: "learning",
+		title: "Aprendiendo",
+		colorClass: "title-learning",
+		items: [
+			{ label: "Astro", imgSrc: "/assets/logos/astro.svg", alt: "Astro" },
+			{ label: "Docker", imgSrc: "/assets/logos/docker.svg", alt: "Docker" },
+			{ label: "Angular", imgSrc: "/assets/logos/angular.svg", alt: "Angular" },
+
+		],
+	},
+];
+
+// Helper para icono (img > Lucide > emoji > punto)
+const getIcon = (item: SkillItem) => {
+	if (item.imgSrc) {
+		return {
+			type: "img" as const,
+			src: item.imgSrc,
+			alt: item.alt ?? item.label,
+		};
+	}
+	if (item.lucide) {
+		return { type: "lucide" as const, icon: item.lucide };
+	}
+	return { type: "emoji" as const, emoji: item.emoji ?? "•" };
+};
+
+
+
 ---
 
-<section class="box skills">
-	<div class="stack gap-2 lg:gap-4">
-		<LucideIcon icon="front-end" color="var(--accent-regular)" size="2.5rem" gradient />
-		<h2>Frontend Development</h2>
-		<p>JavaScript (ES6+), TypeScript, React, React Native, Next.js, HTML5, CSS3, SASS, Tailwind CSS, Responsive Design</p>
-	</div>
-	<div class="stack gap-2 lg:gap-4">
-		<LucideIcon icon="back-end" color="var(--accent-regular)" size="2.5rem" gradient />
-		<h2>Backend Development</h2>
-		<p>Node.js, Express, MongoDB, Mongoose, REST APIs, WebSockets, ERP systems, E-commerce integrations</p>
-	</div>
-	<div class="stack gap-2 lg:gap-4">
-		<Icon icon="strategy" color="var(--accent-regular)" size="2.5rem" gradient />
-		<h2>DevOps & Tools</h2>
-		<p>Git/GitHub, AWS (EC2, Route 53), Apache, Syncfy API, Square, Shopify, Software development lifecycle</p>
-	</div>
+<section class="skills-grid">
+	{
+		sections.map((section) => (
+			<article class="card">
+				<h3 class={`card-title ${section.colorClass}`}>{section.title}</h3>
+				<ul class="skills-list" role="list">
+					{section.items.map((item) => {
+						const iconData = getIcon(item);
+						return (
+							<li class="skill">
+								<span class="skill-icon" aria-hidden="true">
+									{iconData.type === "img" && (
+										<img
+											src={iconData.src}
+											alt={iconData.alt}
+											width="74"
+											height="74"
+											loading="lazy"
+										/>
+									)}
+									{iconData.type === "lucide" && (
+										<LucideIcon
+											icon={iconData.icon}
+											size="1.25rem"
+											color="var(--gray-50)"
+										/>
+									)}
+									{iconData.type === "emoji" && (
+										<span aria-hidden="true">{iconData.emoji}</span>
+									)}
+								</span>
+								<span class="skill-label">{item.label}</span>
+							</li>
+						);
+					})}
+				</ul>
+			</article>
+		))
+	}
 </section>
 
 <style>
-	.box {
+	.skills-grid {
+		display: grid;
+		gap: 1.25rem;
+	}
+
+	@media (min-width: 48rem) {
+		.skills-grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	.card {
+		background: var(--gray-999_40);
 		border: 1px solid var(--gray-800);
-		border-radius: 0.75rem;
-		padding: 1.5rem;
-		background-color: var(--gray-999_40);
+		border-radius: 1rem;
+		padding: 1.25rem;
 		box-shadow: var(--shadow-sm);
 	}
 
-	.skills {
-		display: flex;
-		flex-direction: column;
-		gap: 3rem;
-	}
-
-	.skills h2 {
-		font-size: var(--text-lg);
-	}
-
-	.skills p {
-		color: var(--gray-400);
-	}
-
 	@media (min-width: 50em) {
-		.box {
-			border-radius: 1.5rem;
-			padding: 2.5rem;
+		.card {
+			padding: 1.75rem;
+			border-radius: 1.25rem;
 		}
+	}
 
-		.skills {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: 5rem;
-		}
+	.card-title {
+		font-size: var(--text-xl);
+		font-weight: 700;
+		font-size: 2.5rem;
+		margin: 0 0 1rem 0;
+		letter-spacing: 0.2px;
+		text-align: center;
+	}
 
-		.skills h2 {
-			font-size: var(--text-2xl);
+	/* Colores de títulos (ajusta a tu sistema de tokens) */
+	.title-frontend {
+		color: #1aa8ff;
+	} /* similar al azul de la captura */
+	.title-backend {
+		color: var(--gray-200);
+	}
+	.title-tools {
+		color: #20c6b7;
+	} /* cian/teal */
+	.title-learning {
+		color: #ff8a32;
+	} /* naranja */
+
+	.skills-list {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 0.9rem 1rem;
+	}
+
+	@media (min-width: 30rem) {
+		.skills-list {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 		}
+	}
+	@media (min-width: 64rem) {
+		.skills-list {
+			grid-template-columns: repeat(4, minmax(0, 1fr));
+		}
+	}
+
+	.skill {
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		gap: 0.6rem;
+		padding: 0.5rem 0.6rem;
+		border-radius: 0.75rem;
+		background: linear-gradient(180deg, var(--gray-999_30), var(--gray-999_20));
+		border: 1px solid var(--gray-850);
+		box-shadow: var(--shadow-xs);
+	}
+
+	.skill-icon {
+		width: 100px;
+		height: 100px;
+		display: grid;
+		place-items: center;
+		border-radius: 0.5rem;
+		background: var(--gray-900);
+		border: 1px solid var(--gray-800);
+		overflow: hidden; /* para los logos redondos */
+		transition: all var(--theme-transition);
+	}
+
+	/* Ajustes específicos para tema oscuro */
+	:global(.theme-dark) .skill-icon {
+		background: var(--gray-800);
+		border-color: var(--gray-700);
+	}
+
+	/* Filtros para iconos según el tema */
+	:global(.theme-dark) .skill-icon img {
+		filter: brightness(1.1) contrast(0.9);
+	}
+
+	:global(.theme-light) .skill-icon img {
+		filter: brightness(0.95) contrast(1.05);
+	}
+
+	.skill-label {
+		font-size: var(--text-sm);
+		color: var(--gray-50);
+		line-height: 1.2;
 	}
 </style>
