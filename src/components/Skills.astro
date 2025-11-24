@@ -70,7 +70,7 @@ const sections: SkillSection[] = [
 	},
 	{
 		key: "tools",
-		title: "Herramientas",
+		title: "Tools",
 		colorClass: "title-tools",
 		items: [
 			{ label: "Git", imgSrc: "/portfolio/assets/logos/git.svg", alt: "Git" },
@@ -92,13 +92,13 @@ const sections: SkillSection[] = [
 	},
 	{
 		key: "learning",
-		title: "Aprendiendo",
+		title: "Learning",
 		colorClass: "title-learning",
 		items: [
 			{ label: "Astro", imgSrc: "/portfolio/assets/logos/astro.svg", alt: "Astro" },
 			{ label: "Docker", imgSrc: "/portfolio/assets/logos/docker.svg", alt: "Docker" },
 			{ label: "Angular", imgSrc: "/portfolio/assets/logos/angular.svg", alt: "Angular" },
-
+			{ label: "Python", imgSrc: "/portfolio/assets/logos/py.png", alt: "Python" }
 		],
 	},
 ];
@@ -217,6 +217,8 @@ const getIcon = (item: SkillItem) => {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
 		gap: 0.9rem 1rem;
+		list-style: none;
+		padding: 0;
 	}
 
 	@media (min-width: 30rem) {
