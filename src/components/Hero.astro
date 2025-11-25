@@ -2,17 +2,21 @@
 interface Props {
 	title: string;
 	tagline?: string[];
-	align?: 'start' | 'center';
+	align?: "start" | "center";
 }
 
-const { align = 'center', tagline, title } = Astro.props;
+const { align = "center", tagline, title } = Astro.props;
 ---
 
-<div class:list={['hero stack gap-4', align]}>
+<div class:list={["hero stack gap-4", align]}>
 	<div class="stack gap-2">
-		<h1 class="title">{title}</h1>
-		<div>
-			{Array.isArray(tagline) ? tagline.map((line) => <p class="tagline">{line}</p>) : null}
+		<h1 class="title gradient-text">{title}</h1>
+		<div class="tagline-container">
+			{
+				Array.isArray(tagline)
+					? tagline.map((line) => <p class="tagline">{line}</p>)
+					: null
+			}
 		</div>
 	</div>
 	<slot />
@@ -22,20 +26,25 @@ const { align = 'center', tagline, title } = Astro.props;
 	.hero {
 		font-size: var(--text-lg);
 		text-align: center;
-		min-height: 50vh; 
-		padding-top: 5rem;	
+		padding-top: 5rem;
 	}
 
 	.title,
 	.tagline {
 		max-width: 37ch;
 		margin-inline: auto;
-		margin-bottom: 0px;
 	}
 
 	.title {
 		font-size: var(--text-3xl);
-		color: var(--gray-0);
+		line-height: 1.1;
+		font-weight: 800;
+		margin-bottom: 1rem;
+	}
+
+	.tagline {
+		color: var(--gray-400);
+		line-height: 1.5;
 	}
 
 	@media (min-width: 50em) {
