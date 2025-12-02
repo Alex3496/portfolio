@@ -1,15 +1,17 @@
 ---
 interface Props {
+	greeting?: string;
 	title: string;
 	tagline?: string[];
 	align?: "start" | "center";
 }
 
-const { align = "center", tagline, title } = Astro.props;
+const { align = "center", greeting, tagline, title } = Astro.props;
 ---
 
 <div class:list={["hero stack gap-4", align]}>
 	<div class="stack gap-2">
+		{greeting && <p class="greeting">{greeting}</p>}
 		<h1 class="title gradient-text">{title}</h1>
 		<div class="tagline-container">
 			{
@@ -29,10 +31,18 @@ const { align = "center", tagline, title } = Astro.props;
 		padding-top: 5rem;
 	}
 
+	.greeting,
 	.title,
 	.tagline {
 		max-width: 37ch;
 		margin-inline: auto;
+	}
+
+	.greeting {
+		font-size: var(--text-lg);
+		color: var(--gray-400);
+		font-weight: 400;
+		margin-bottom: 0.5rem;
 	}
 
 	.title {
@@ -56,9 +66,14 @@ const { align = "center", tagline, title } = Astro.props;
 			text-align: start;
 		}
 
+		.start .greeting,
 		.start .title,
 		.start .tagline {
 			margin-inline: unset;
+		}
+
+		.greeting {
+			font-size: var(--text-xl);
 		}
 
 		.title {
