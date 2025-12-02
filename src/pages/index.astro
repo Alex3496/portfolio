@@ -10,7 +10,7 @@ import Grid from "../components/Grid.astro";
 import Hero from "../components/Hero.astro";
 import Icon from "../components/Icon.astro";
 import Pill from "../components/Pill.astro";
-import PortfolioPreview from "../components/PortfolioPreview.astro";
+import Portfolio from "../components/Portfolio.astro";
 import LucideIcon from "../components/LucideIcon.astro";
 
 // Page section components
@@ -138,35 +138,10 @@ const projects = (await getCollection("work"))
 			<Education />
 		</div>
 
-
 		<!-- Portfolio Section -->
-		<!--<main id="projects" class="wrapper stack gap-20 lg:gap-48">
-			<section class="section with-background with-cta">
-				<header class="section-header stack gap-2 lg:gap-4">
-					<h3>Featured Projects</h3>
-					<p>Here are some of my most relevant projects developed over the past few years.</p>
-				</header>
-
-				<div class="gallery">
-					<Grid variant="offset">
-						{
-							projects.map((project) => (
-								<li>
-									<PortfolioPreview project={project} />
-								</li>
-							))
-						}
-					</Grid>
-				</div>
-
-				<div class="cta">
-					<CallToAction href="/work/">
-						View All
-						<Icon icon="arrow-right" size="1.2em" />
-					</CallToAction>
-				</div>
-			</section>
-		</main> -->
+		<div id="projects" class="wrapper">
+			<Portfolio />
+		</div>
 
 		<!-- Contact CTA -->
 		<ContactCTA />
