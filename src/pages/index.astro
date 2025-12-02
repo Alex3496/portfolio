@@ -37,7 +37,7 @@ const projects = (await getCollection("work"))
 >
 	<div class="stack gap-20 lg:gap-48 center">
 		<!-- Hero Section -->
-		<div id="hero" class="wrapper stack gap-8 lg:gap-20">
+		<div id="hero" class="wrapper stack gap-8 lg:gap-20 min-h-[60vh]">
 			<header class="hero">
 				<Hero
 					greeting="Hello, my name is"
@@ -114,10 +114,18 @@ const projects = (await getCollection("work"))
 				</Hero>
 			</header>
 		</div>
+		
+		<div class="wrapper-lg">
 
-		<!-- About Section -->
-		<div id="about" class="wrapper bg-intermediate">
-			<About />
+			<!-- About Section -->
+			<div id="about" class="wrapper bg-intermediate">
+				<About />
+			</div>
+			
+			<!-- Skills Section -->
+			<div id="skills" class="wrapper bg-intermediate mt-0">
+				<Skills />
+			</div>
 		</div>
 
 		<!-- Experience Section -->
@@ -130,9 +138,6 @@ const projects = (await getCollection("work"))
 			<Education />
 		</div>
 
-		<div id="skills" class="wrapper" style="padding-top: 10rem;">
-			<Skills />
-		</div>
 
 		<!-- Portfolio Section -->
 		<!--<main id="projects" class="wrapper stack gap-20 lg:gap-48">

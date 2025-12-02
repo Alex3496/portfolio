@@ -1,99 +1,58 @@
 ---
-import Icon from "./Icon.astro";
-import LucideIcon, { lucideIconPaths } from "./LucideIcon.astro";
-
-// Tipos opcionales para claridad
 type SkillItem = {
 	label: string;
-	imgSrc?: string; // Ruta a logo (svg/png) p. ej. /assets/logos/html.svg
-	lucide?: keyof typeof lucideIconPaths; // Nombre de icono para <LucideIcon />
-	emoji?: string; // Fallback emoji si no hay logo
-	alt?: string; // Alt accesible para la imagen
-	fill?: string; // Color de relleno para logos
+	imgSrc: string;
+	alt: string;
 };
 
 type SkillSection = {
-	key: "frontend" | "backend" | "tools" | "learning";
-	title: string;
-	colorClass: string; // Colorea el título (ver CSS)
+	id: "frontend" | "backend" | "tools" | "learning";
+	label: string;
 	items: SkillItem[];
 };
 
-// ====== DATA ÚNICA ======
 const sections: SkillSection[] = [
 	{
-		key: "frontend",
-		title: "Frontend",
-		colorClass: "title-frontend",
+		id: "frontend",
+		label: "Frontend",
 		items: [
 			{ label: "HTML", imgSrc: "/portfolio/assets/logos/html5.svg", alt: "HTML5" },
 			{ label: "CSS", imgSrc: "/portfolio/assets/logos/css3.svg", alt: "CSS3" },
-			{
-				label: "JavaScript",
-				imgSrc: "/portfolio/assets/logos/javascript.svg",
-				alt: "JavaScript",
-			},
-			{
-				label: "TypeScript",
-				imgSrc: "/portfolio/assets/logos/typescript.svg",
-				alt: "TypeScript",
-			},
+			{ label: "JavaScript", imgSrc: "/portfolio/assets/logos/javascript.svg", alt: "JavaScript" },
+			{ label: "TypeScript", imgSrc: "/portfolio/assets/logos/typescript.svg", alt: "TypeScript" },
 			{ label: "ReactJS", imgSrc: "/portfolio/assets/logos/react.svg", alt: "React" },
-			{
-				label: "Tailwind",
-				imgSrc: "/portfolio/assets/logos/tailwind.svg",
-				alt: "Tailwind CSS",
-			},
+			{ label: "Tailwind", imgSrc: "/portfolio/assets/logos/tailwind.svg", alt: "Tailwind CSS" },
 			{ label: "SASS", imgSrc: "/portfolio/assets/logos/sass.svg", alt: "SASS" },
 			{ label: "Figma", imgSrc: "/portfolio/assets/logos/figma.svg", alt: "Figma" },
 		],
 	},
 	{
-		key: "backend",
-		title: "Backend",
-		colorClass: "title-backend",
+		id: "backend",
+		label: "Backend",
 		items: [
 			{ label: "NodeJS", imgSrc: "/portfolio/assets/logos/nodejs.svg", alt: "Node.js" },
-			{
-				label: "ExpressJS",
-				imgSrc: "/portfolio/assets/logos/express.svg",
-				alt: "Express.js",
-			},
-			{
-				label: "mongoDB",
-				imgSrc: "/portfolio/assets/logos/mongodb.svg",
-				alt: "MongoDB",
-			},
+			{ label: "ExpressJS", imgSrc: "/portfolio/assets/logos/express.svg", alt: "Express.js" },
+			{ label: "MongoDB", imgSrc: "/portfolio/assets/logos/mongodb.svg", alt: "MongoDB" },
 			{ label: "Next.js", imgSrc: "/portfolio/assets/logos/nextjs.svg", alt: "Next.js" },
 			{ label: "Apache", imgSrc: "/portfolio/assets/logos/apache.svg", alt: "Apache" },
 		],
 	},
 	{
-		key: "tools",
-		title: "Tools",
-		colorClass: "title-tools",
+		id: "tools",
+		label: "Tools & DevOps",
 		items: [
 			{ label: "Git", imgSrc: "/portfolio/assets/logos/git.svg", alt: "Git" },
 			{ label: "GitHub", imgSrc: "/portfolio/assets/logos/github.svg", alt: "GitHub" },
 			{ label: "Terminal", imgSrc: "/portfolio/assets/logos/terminal.svg", alt: "Terminal" },
-			{
-				label: "VSCode",
-				imgSrc: "/portfolio/assets/logos/vscode.svg",
-				alt: "Visual Studio Code",
-			},
+			{ label: "VSCode", imgSrc: "/portfolio/assets/logos/vscode.svg", alt: "Visual Studio Code" },
 			{ label: "npm", imgSrc: "/portfolio/assets/logos/npm.svg", alt: "npm" },
-			{ label: "OpenAI", imgSrc: "/portfolio/assets/logos/openai.svg", alt: "OpenAI", fill: "white" },
-			{
-				label: "Amazon Web Services",
-				imgSrc: "/portfolio/assets/logos/aws.svg",
-				alt: "AWS",
-			},
+			{ label: "OpenAI", imgSrc: "/portfolio/assets/logos/openai.svg", alt: "OpenAI" },
+			{ label: "AWS", imgSrc: "/portfolio/assets/logos/aws.svg", alt: "AWS" },
 		],
 	},
 	{
-		key: "learning",
-		title: "Learning",
-		colorClass: "title-learning",
+		id: "learning",
+		label: "Learning",
 		items: [
 			{ label: "Astro", imgSrc: "/portfolio/assets/logos/astro.svg", alt: "Astro" },
 			{ label: "Docker", imgSrc: "/portfolio/assets/logos/docker.svg", alt: "Docker" },
@@ -102,178 +61,165 @@ const sections: SkillSection[] = [
 		],
 	},
 ];
-
-// Helper para icono (img > Lucide > emoji > punto)
-const getIcon = (item: SkillItem) => {
-	if (item.imgSrc) {
-		return {
-			type: "img" as const,
-			src: item.imgSrc,
-			alt: item.alt ?? item.label,
-		};
-	}
-	if (item.lucide) {
-		return { type: "lucide" as const, icon: item.lucide };
-	}
-	return { type: "emoji" as const, emoji: item.emoji ?? "•" };
-};
-
-
-
 ---
 
-<section class="skills-grid">
-	{
-		sections.map((section) => (
-			<article class="card">
-				<h3 class={`card-title ${section.colorClass}`}>{section.title}</h3>
-				<ul class="skills-list" role="list">
-					{section.items.map((item) => {
-						const iconData = getIcon(item);
-						return (
-							<li class="skill">
-								<span class="skill-icon" aria-hidden="true">
-									{iconData.type === "img" && (
-										<img
-											src={iconData.src}
-											alt={iconData.alt}
-											width="74"
-											height="74"
-											loading="lazy"
-										/>
-									)}
-									{iconData.type === "lucide" && (
-										<LucideIcon
-											icon={iconData.icon}
-											size="1.25rem"
-											color="var(--gray-50)"
-										/>
-									)}
-									{iconData.type === "emoji" && (
-										<span aria-hidden="true">{iconData.emoji}</span>
-									)}
-								</span>
-								<span class="skill-label">{item.label}</span>
-							</li>
-						);
-					})}
-				</ul>
-			</article>
-		))
-	}
+<section id="skills" class="skills-section">
+	<div class="skills-container">
+		<div class="section-header">
+			<h2>Technical Skills</h2>
+			<div class="divider"></div>
+		</div>
+
+		<div class="skills-grid">
+			{sections.map((section) => (
+				<article class="skill-category">
+					<h3 class="category-title">{section.label}</h3>
+					<div class="skills-wrapper">
+						{section.items.map((skill) => (
+							<div class="skill-badge">
+								<img 
+									src={skill.imgSrc} 
+									alt={skill.alt}
+									class="skill-icon"
+									width="20"
+									height="20"
+									loading="lazy"
+									
+								/>
+								<span class="skill-name">{skill.label}</span>
+							</div>
+						))}
+					</div>
+				</article>
+			))}
+		</div>
+	</div>
 </section>
 
 <style>
+	.skills-section {
+		padding: 10rem 0 5rem;
+	}
+
+	.skills-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
+	}
+
+	.section-header {
+		text-align: center;
+		margin-bottom: 4rem;
+	}
+
+	.section-header h2 {
+		font-size: var(--text-3xl);
+		font-weight: 700;
+		color: var(--gray-0);
+		margin-bottom: 1rem;
+	}
+
+	.divider {
+		width: 5rem;
+		height: 4px;
+		background: var(--accent-regular);
+		margin: 0 auto 1rem;
+		border-radius: 9999px;
+	}
+
+	.description {
+		margin-top: 1rem;
+		font-size: var(--text-lg);
+		color: var(--gray-intermediate-300);
+		max-width: 42rem;
+		margin-left: auto;
+		margin-right: auto;
+		line-height: 1.6;
+	}
+
 	.skills-grid {
 		display: grid;
-		gap: 1.25rem;
+		grid-template-columns: 1fr;
+		gap: 2rem;
 	}
 
 	@media (min-width: 48rem) {
 		.skills-grid {
-			grid-template-columns: repeat(2, minmax(0, 1fr));
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 
-	.card {
-		background: var(--gray-999_40);
-		border: 1px solid var(--gray-800);
+	@media (min-width: 64rem) {
+		.skills-grid {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.skill-category:nth-child(4) {
+			grid-column: 2 / 3;
+		}
+	}
+
+	.skill-category {
+		background: var(--gray-intermediate-100);
 		border-radius: 1rem;
-		padding: 1.25rem;
+		padding: 2rem;
+		border: 1px solid var(--gray-600);
 		box-shadow: var(--shadow-sm);
 	}
 
-	@media (min-width: 50em) {
-		.card {
-			padding: 1.75rem;
-			border-radius: 1.25rem;
-		}
-	}
-
-	.card-title {
-		font-size: var(--text-xl);
+	.category-title {
+		font-size: var(--text-2xl);
 		font-weight: 700;
-		font-size: 2.5rem;
-		margin: 0 0 1rem 0;
-		letter-spacing: 0.2px;
+		color: var(--gray-0);
+		margin-bottom: 1.5rem;
 		text-align: center;
+		padding-bottom: 1rem;
+		border-bottom: 1px solid var(--gray-800);
 	}
 
-	/* Colores de títulos (ajusta a tu sistema de tokens) */
-	.title-frontend {
-		color: #1aa8ff;
-	} /* similar al azul de la captura */
-	.title-backend {
-		color: var(--gray-200);
-	}
-	.title-tools {
-		color: #20c6b7;
-	} /* cian/teal */
-	.title-learning {
-		color: #ff8a32;
-	} /* naranja */
-
-	.skills-list {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 0.9rem 1rem;
-		list-style: none;
-		padding: 0;
-	}
-
-	@media (min-width: 30rem) {
-		.skills-list {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
-	}
-	@media (min-width: 64rem) {
-		.skills-list {
-			grid-template-columns: repeat(4, minmax(0, 1fr));
-		}
-	}
-
-	.skill {
+	.skills-wrapper {
 		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 0.75rem;
+	}
+
+	.skill-badge {
+		display: inline-flex;
 		align-items: center;
-		flex-direction: column;
-		gap: 0.6rem;
-		padding: 0.5rem 0.6rem;
-		border-radius: 0.75rem;
-		background: linear-gradient(180deg, var(--gray-999_30), var(--gray-999_20));
-		border: 1px solid var(--gray-850);
-		box-shadow: var(--shadow-xs);
+		gap: 0.5rem;
+		padding: 0.5rem 1rem;
+		background: var(--gray-intermediate-200);
+		color: var(--gray-200);
+		border-radius: 9999px;
+		font-size: var(--text-sm);
+		font-weight: 500;
+		border: 1px solid var(--gray-800);
+		box-shadow: var(--shadow-sm);
+		transition: all 0.3s ease;
+		cursor: default;
+	}
+
+	.skill-badge:hover {
+		border-color: var(--accent-regular);
+		color: var(--accent-regular);
+		transform: translateY(-2px);
 	}
 
 	.skill-icon {
-		width: 100px;
-		height: 100px;
-		display: grid;
-		place-items: center;
-		border-radius: 0.5rem;
-		background: var(--gray-900);
-		border: 1px solid var(--gray-800);
-		overflow: hidden; /* para los logos redondos */
-		transition: all var(--theme-transition);
+		width: 20px;
+		height: 20px;
+		object-fit: contain;
 	}
 
-	/* Ajustes específicos para tema oscuro */
-	:global(.theme-dark) .skill-icon {
-		background: var(--gray-800);
-		border-color: var(--gray-700);
+	.skill-name {
+		white-space: nowrap;
+		font-size: medium;
 	}
 
-	/* Filtros para iconos según el tema */
-	:global(.theme-dark) .skill-icon img {
-		filter: brightness(1.1) contrast(0.9);
-	}
-
-	:global(.theme-light) .skill-icon img {
-		filter: brightness(0.95) contrast(1.05);
-	}
-
-	.skill-label {
-		font-size: var(--text-sm);
-		color: var(--gray-50);
-		line-height: 1.2;
+	@media (min-width: 50em) {
+		.section-header h2 {
+			font-size: var(--text-4xl);
+		}
 	}
 </style>

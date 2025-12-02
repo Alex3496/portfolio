@@ -4,25 +4,25 @@ import { PanelsTopLeft, Server, Database, Terminal } from '@lucide/astro';
 const services = [
   {
     title: "Frontend Development",
-    description: "Building responsive, accessible, and performant user interfaces using React, Tailwind CSS, and modern JavaScript.",
+    description: "Building responsive, accessible, and useful user interfaces using React, Tailwind CSS, and modern JavaScript.",
     icon: PanelsTopLeft,
     color: "#34d399" // emerald-400
   },
   {
     title: "Backend Development",
-    description: "Creating robust RESTful APIs and microservices with Node.js, Express, and scalable architecture.",
+    description: "Build RESTful APIs and services with Node.js, Express, and scalable architecture.",
     icon: Server,
     color: "#22d3ee" // cyan-400
   },
   {
     title: "Database Design",
-    description: "Designing efficient database schemas with MongoDB and SQL databases for optimal data retrieval and integrity.",
+    description: "Designing efficient database schemas with MongoDB for optimal performance.",
     icon: Database,
     color: "#c084fc" // purple-400
   },
   {
     title: "DevOps & Deployment",
-    description: "Setting up CI/CD pipelines, Docker containers, and deploying applications to cloud platforms like AWS and Vercel.",
+    description: "Setting up CI/CD pipelines, Docker containers, and deploying applications to cloud platforms like AWS.",
     icon: Terminal,
     color: "#fb923c" // orange-400
   }
@@ -47,7 +47,7 @@ const services = [
       </div>
       <div class="about-text">
         <p>
-          I'm a <strong>Full Stack JavaScript Developer</strong> with +5 years of
+          I'm a <strong>Full Stack Developer</strong> with +5 years of
           experience creating web and mobile solutions using the <strong>MERN</strong> stack. I’ve
           built platforms ranging from ERP systems and e-commerce stores to mobile
           apps and inventory management tools.
@@ -55,9 +55,8 @@ const services = [
         <p>
           I always seek the <strong>best way to build software</strong>,
           focusing on clean architecture, performance, and delivering reliable
-          applications that adapt to real business needs. My experience includes
-          API integrations, payment platforms, and system optimization to
-          provide long-lasting value.
+          applications that adapt to real clients needs. My experience includes
+          API integrations, payment platforms, and system optimization.
         </p>
         <p>
           With a strong mindset for <strong
@@ -89,7 +88,7 @@ const services = [
     padding: 2.5rem;
     /*background-color: var(--gray-999_40);*/
     margin: 3rem 0;
-    max-width: 1100px;
+    max-width: 1200px;
     margin: auto;
   }
 
@@ -100,7 +99,7 @@ const services = [
 
   .section-header h2 {
     font-size: var(--text-3xl);
-    color: var(--gray-intermediate-0);
+    color: var(--gray-0);
     margin-bottom: 1rem;
   }
 
@@ -118,14 +117,14 @@ const services = [
   }
 
   .about-text p {
-    color: var(--gray-intermediate-300);
+    color: var(--gray-300);
     line-height: 1.6;
     margin-bottom: 1.5rem;
     font-size: larger;
   }
 
   .about-text strong {
-    color: var(--gray-intermediate-100);
+    color: var(--gray-100);
   }
 
   .about-image img {
@@ -147,7 +146,7 @@ const services = [
     background-color: var(--gray-intermediate-200);
     padding: 1.5rem;
     border-radius: 0.75rem;
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-md);
     border: 1px solid var(--gray-800);
     transition: all 0.3s ease;
   }

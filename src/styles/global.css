@@ -73,6 +73,8 @@
 
 	/* Transitions */
 	--theme-transition: 0.2s ease-in-out;
+
+	--intermediate-bg: #ffffff;
 }
 
 :root.theme-dark {
@@ -117,7 +119,7 @@
 		0px 62px 25px rgba(255, 255, 255, 0.01), 0px 35px 21px rgba(255, 255, 255, 0.05),
 		0px 16px 16px rgba(255, 255, 255, 0.1), 0px 4px 9px rgba(255, 255, 255, 0.12);
 
-	--intermediate-bg: #f8fafc;
+	--intermediate-bg: #0f172a;
 
 	--gray-intermediate-0: #090b11;
 	--gray-intermediate-50: #141925;
@@ -214,6 +216,16 @@ h5 {
 	width: 100%;
 	margin-inline: auto;
 	padding-inline: 1.5rem;
+}
+
+.wrapper-lg {
+	width: 100%;
+	margin-inline: auto;
+	margin-top: 6rem;
+}
+
+.mt-0 {
+	margin-top: 0 !important;
 }
 
 .stack {
