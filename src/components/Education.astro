@@ -1,114 +1,282 @@
 ---
-import LucideIcon from './LucideIcon.astro';
+import { GraduationCap, Award, Calendar } from '@lucide/astro';
+import PlatziIcon from './svgs/PlatziIcon.astro';
+
+const education = [
+	{
+		id: 1,
+		institution: "Instituto Tecnológico de Tijuana",
+		degree: "Computer Systems Engineering",
+		period: "2015 – 2020",
+		description: "Strong background in programming, data structures, algorithms and software development methods. This education gave me the theoretical foundation that supports my practical experience in web and mobile development.",
+		achievements: [
+			"Practical and theoretical knowledge",
+			"Developed multiple academic projects",
+			"Focus on software architecture and design patterns"
+		]
+	},
+	{
+		id: 2,
+		institution: "Platzi",
+		degree: "Continuous Learning — Software Development",
+		period: "Present",
+		description:
+			"Constantly study new technologies and stay updated. I’ve completed courses on frontend, backend, DevOps, cloud services, and Mobile Apps.",
+		achievements: [
+			"Completed +15 courses (React, Node.js, TypeScript, MongoDB, AWS, etc.)",
+			"Kept my skills updated with modern tools and best practices",
+			"Practical knowledge through hands-on projects"
+		],
+	}
+];
 ---
 
-<section class="education-section box">
-	<div class="stack gap-6">
+<section id="education" class="education-section">
+	<div class="education-container">
 		<div class="section-header">
 			<h2>Education</h2>
 			<div class="divider"></div>
+			<p class="description">
+				My academic background and continuous learning journey.
+			</p>
 		</div>
 		
-		<div class="education-content">
-			<div class="education-item">
-				<div class="education-icon">
-					<LucideIcon icon="graduation-cap" size="2rem" color="var(--accent-regular)" />
-				</div>
-				<div class="education-details">
-					<h3>Computer Systems Engineering</h3>
-					<p class="institution">Tijuana Institute of Technology</p>
-					<p class="period">2015 – 2020</p>
-					<p class="description">
-						Strong background in programming, data structures, algorithms and software development methods. 
-						This education gave me the theoretical foundation that supports my practical experience in web and mobile development.
-					</p>
-				</div>
-			</div>
+		<div class="education-grid">
+			{education.map((edu) => (
+				<article class="education-card">
+				<div class="icon-background">
+					{edu.institution === "Platzi" ? (
+						<PlatziIcon size={100} />
+					) : (
+						<GraduationCap size={100} />
+					)}
+				</div>					<div class="card-content">
+					<div class="icon-badge">
+						{edu.institution === "Platzi" ? (
+							<PlatziIcon size={24} />
+						) : (
+							<GraduationCap size={24} />
+						)}
+					</div>						<h3 class="institution">{edu.institution}</h3>
+						<h4 class="degree">{edu.degree}</h4>
+						
+						<div class="period">
+							<Calendar size={16} />
+							<span>{edu.period}</span>
+						</div>
+
+						<p class="edu-description">
+							{edu.description}
+						</p>
+
+						{edu.achievements && (
+							<div class="achievements">
+								<h5 class="achievements-title">
+									<Award size={16} />
+									Key Achievements
+								</h5>
+								<ul class="achievements-list">
+									{edu.achievements.map((achievement) => (
+										<li>
+											<span class="bullet"></span>
+											<span>{achievement}</span>
+										</li>
+									))}
+								</ul>
+							</div>
+						)}
+					</div>
+				</article>
+			))}
 		</div>
 	</div>
 </section>
 
 <style>
 	.education-section {
-		border: 1px solid var(--gray-800);
-		border-radius: 1.5rem;
-		padding: 2.5rem;
-		background-color: var(--gray-999_40);
-		box-shadow: var(--shadow-sm);
-		margin: 3rem 0;
+		padding: 5rem 0;
+	}
+
+	.education-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 1.5rem;
 	}
 
 	.section-header {
 		text-align: center;
-		margin-bottom: 2rem;
+		margin-bottom: 4rem;
 	}
 
 	.section-header h2 {
 		font-size: var(--text-3xl);
+		font-weight: 700;
 		color: var(--gray-0);
 		margin-bottom: 1rem;
 	}
 
 	.divider {
-		width: 4rem;
-		height: 2px;
+		width: 5rem;
+		height: 4px;
 		background: var(--accent-regular);
-		margin: 0 auto;
+		margin: 0 auto 1rem;
+		border-radius: 9999px;
 	}
 
-	.education-item {
+	.description {
+		margin-top: 1rem;
+		font-size: var(--text-lg);
+		color: var(--gray-300);
+		max-width: 42rem;
+		margin-left: auto;
+		margin-right: auto;
+		line-height: 1.6;
+	}
+
+	.education-grid {
 		display: flex;
-		gap: 1.5rem;
-		align-items: flex-start;
+		flex-wrap: wrap;
+		gap: 2rem;
+		justify-content: center;
 	}
 
-	.education-icon {
-		flex-shrink: 0;
-		padding: 1rem;
-		background: var(--gradient-subtle);
-		border-radius: 1rem;
+	.education-card {
+		background: var(--gray-999_40);
+		border-radius: 0.75rem;
+		padding: 2rem;
 		border: 1px solid var(--gray-800);
+		box-shadow: var(--shadow-sm);
+		position: relative;
+		overflow: hidden;
+		transition: all 0.3s ease;
+		width: 100%;
+		max-width: 400px;
 	}
 
-	.education-details h3 {
+	@media (min-width: 48rem) {
+		.education-card {
+			width: calc(50% - 1rem);
+		}
+	}
+
+	@media (min-width: 64rem) {
+		.education-card {
+			width: calc(33.333% - 1.5rem);
+		}
+	}
+
+	.education-card:hover {
+		box-shadow: var(--shadow-md);
+		transform: translateY(-2px);
+	}
+
+	.education-card:hover .icon-background {
+		opacity: 0.2;
+	}
+
+	.icon-background {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 1rem;
+		opacity: 0.1;
+		color: var(--accent-regular);
+		transition: opacity 0.3s ease;
+		pointer-events: none;
+	}
+
+	.card-content {
+		position: relative;
+		z-index: 10;
+	}
+
+	.icon-badge {
+		width: 3rem;
+		height: 3rem;
+		background: var(--accent-overlay);
+		border-radius: 0.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--accent-regular);
+		margin-bottom: 1.5rem;
+	}
+
+	.institution {
 		font-size: var(--text-xl);
+		font-weight: 700;
 		color: var(--gray-0);
 		margin-bottom: 0.5rem;
 	}
 
-	.institution {
+	.degree {
 		font-size: var(--text-lg);
-		color: var(--accent-regular);
 		font-weight: 600;
-		margin-bottom: 0.25rem;
-	}
-
-	.period {
-		color: var(--gray-400);
-		font-size: var(--text-sm);
+		color: var(--accent-regular);
 		margin-bottom: 1rem;
 	}
 
-	.description {
+	.period {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: var(--gray-400);
+		font-size: var(--text-sm);
+		margin-bottom: 1.5rem;
+	}
+
+	.edu-description {
 		color: var(--gray-300);
 		line-height: 1.6;
+		margin-bottom: 1.5rem;
+	}
+
+	.achievements {
+		margin-top: 1.5rem;
+	}
+
+	.achievements-title {
+		font-weight: 600;
+		color: var(--gray-200);
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		margin-bottom: 0.75rem;
+		font-size: var(--text-sm);
+	}
+
+	.achievements-title :global(svg) {
+		color: var(--accent-regular);
+	}
+
+	.achievements-list {
+		list-style: none;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.achievements-list li {
+		font-size: var(--text-sm);
+		color: var(--gray-300);
+		display: flex;
+		align-items: flex-start;
+		gap: 0.5rem;
+	}
+
+	.bullet {
+		width: 6px;
+		height: 6px;
+		background: var(--accent-regular);
+		border-radius: 50%;
+		margin-top: 0.375rem;
+		flex-shrink: 0;
 	}
 
 	@media (min-width: 50em) {
-		.education-section {
-			padding: 3.5rem;
-		}
-
 		.section-header h2 {
 			font-size: var(--text-4xl);
-		}
-
-		.education-item {
-			gap: 2rem;
-		}
-
-		.education-details h3 {
-			font-size: var(--text-2xl);
 		}
 	}
 </style>
