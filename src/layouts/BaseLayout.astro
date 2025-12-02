@@ -90,15 +90,10 @@ const { title, description } = Astro.props;
 
 			.backgrounds {
 				min-height: 100%;
-				
-				background: var(--bg-image-main);
-					
-				background-blend-mode: /*noise*/
-					overlay,
-					/*footer*/ var(--bg-blend-mode),
-					/*header1*/ var(--bg-svg-blend-mode),
-					/*header2*/ normal,
-					/*base*/ normal;
+				background: 
+					url("https://www.transparenttextures.com/patterns/cubes.png"),
+					var(--bg-image-main);
+				background-blend-mode: overlay;
 			}
 			@media (forced-colors: active) {
 				/* Deactivate custom backgrounds for high contrast users. */

@@ -1,6 +1,6 @@
 /* Global variables */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
-
+@import "tailwindcss";
 :root {
 	/* Colors */
 	--gray-0: #090b11;
@@ -90,9 +90,9 @@
 	--gray-999-basis: 225, 31%, 5%;
 	--gray-999: #090b11;
 
-	--accent-light: #1c0056;
-	--accent-regular: #7611a6;
-	--accent-dark: #c561f6;
+	--accent-light: #2dcfa2;
+	--accent-regular: #1ec5b6;
+	--accent-dark: #07b7d3;
 	--accent-overlay: hsla(280, 89%, 67%, 0.33);
 	--accent-subtle-overlay: hsla(281, 81%, 36%, 0.33);
 	--accent-text-over: var(--gray-0);
@@ -116,6 +116,23 @@
 	--shadow-lg:
 		0px 62px 25px rgba(255, 255, 255, 0.01), 0px 35px 21px rgba(255, 255, 255, 0.05),
 		0px 16px 16px rgba(255, 255, 255, 0.1), 0px 4px 9px rgba(255, 255, 255, 0.12);
+
+	--intermediate-bg: #f8fafc;
+
+	--gray-intermediate-0: #090b11;
+	--gray-intermediate-50: #141925;
+	--gray-intermediate-100: #283044;
+	--gray-intermediate-200: #3d4663;
+	--gray-intermediate-300: #505d84;
+	--gray-intermediate-400: #6474a2;
+	--gray-intermediate-500: #8490b5;
+	--gray-intermediate-600: #a3acc8;
+	--gray-intermediate-700: #c3cadb;
+	--gray-intermediate-800: #e3e6ee;
+	--gray-intermediate-900: #f3f4f7;
+	--gray-intermediate-999-basis: 0, 0%, 100%;
+	--gray-intermediate-999_40: hsla(var(--gray-intermediate-999-basis), 0.4);
+	--gray-intermediate-999: #ffffff;
 }
 
 html,
@@ -195,7 +212,6 @@ h5 {
 
 .wrapper {
 	width: 100%;
-	max-width: 83rem;
 	margin-inline: auto;
 	padding-inline: 1.5rem;
 }
@@ -277,4 +293,10 @@ h5 {
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
 	color: transparent;
+}
+
+
+/* PERSONALAIZED CLASES */
+.bg-intermediate{
+	  background-color: var(--intermediate-bg);
 }

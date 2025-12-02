@@ -1,5 +1,32 @@
 ---
+import { PanelsTopLeft, Server, Database, Terminal } from '@lucide/astro';
 
+const services = [
+  {
+    title: "Frontend Development",
+    description: "Building responsive, accessible, and performant user interfaces using React, Tailwind CSS, and modern JavaScript.",
+    icon: PanelsTopLeft,
+    color: "#34d399" // emerald-400
+  },
+  {
+    title: "Backend Development",
+    description: "Creating robust RESTful APIs and microservices with Node.js, Express, and scalable architecture.",
+    icon: Server,
+    color: "#22d3ee" // cyan-400
+  },
+  {
+    title: "Database Design",
+    description: "Designing efficient database schemas with MongoDB and SQL databases for optimal data retrieval and integrity.",
+    icon: Database,
+    color: "#c084fc" // purple-400
+  },
+  {
+    title: "DevOps & Deployment",
+    description: "Setting up CI/CD pipelines, Docker containers, and deploying applications to cloud platforms like AWS and Vercel.",
+    icon: Terminal,
+    color: "#fb923c" // orange-400
+  }
+];
 ---
 
 <section class="about-section box">
@@ -10,6 +37,14 @@
     </div>
 
     <div class="about-content">
+       <div class="about-image">
+        <img
+          src="/portfolio/assets/laptop.jpeg"
+          alt="Manuel A. Elizondo Tello working on web development"
+          width="400"
+          height="300"
+        />
+      </div>
       <div class="about-text">
         <p>
           I'm a <strong>Full Stack JavaScript Developer</strong> with +5 years of
@@ -31,27 +66,31 @@
           enhance the overall digital experience for users.
         </p>
       </div>
+    </div>
 
-      <div class="about-image">
-        <img
-          src="/portfolio/assets/at-work.png"
-          alt="Manuel A. Elizondo Tello working on web development"
-          width="400"
-          height="300"
-        />
-      </div>
+    <!-- Services Cards -->
+    <div class="services-grid">
+      {services.map((service) => (
+        <div class="service-card">
+          <div class="service-icon" style={`color: ${service.color}`}>
+            <service.icon size={32} />
+          </div>
+          <h3 class="service-title">{service.title}</h3>
+          <p class="service-description">{service.description}</p>
+        </div>
+      ))}
     </div>
   </div>
 </section>
 
 <style>
   .about-section {
-    border: 1px solid var(--gray-800);
     border-radius: 1.5rem;
     padding: 2.5rem;
-    background-color: var(--gray-999_40);
-    box-shadow: var(--shadow-sm);
+    /*background-color: var(--gray-999_40);*/
     margin: 3rem 0;
+    max-width: 1100px;
+    margin: auto;
   }
 
   .section-header {
@@ -61,7 +100,7 @@
 
   .section-header h2 {
     font-size: var(--text-3xl);
-    color: var(--gray-0);
+    color: var(--gray-intermediate-0);
     margin-bottom: 1rem;
   }
 
@@ -79,14 +118,14 @@
   }
 
   .about-text p {
-    color: var(--gray-300);
+    color: var(--gray-intermediate-300);
     line-height: 1.6;
     margin-bottom: 1.5rem;
     font-size: larger;
   }
 
   .about-text strong {
-    color: var(--gray-100);
+    color: var(--gray-intermediate-100);
   }
 
   .about-image img {
@@ -96,18 +135,72 @@
     box-shadow: var(--shadow-md);
   }
 
+  /* Services Grid */
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .service-card {
+    background-color: var(--gray-intermediate-200);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--gray-800);
+    transition: all 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .service-icon {
+    margin-bottom: 1rem;
+  }
+
+  .service-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .service-title {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--gray-0);
+    margin-bottom: 0.5rem;
+  }
+
+  .service-description {
+    color: var(--gray-300);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+  }
+
   @media (min-width: 50em) {
     .about-section {
       padding: 3.5rem;
     }
 
     .about-content {
-      grid-template-columns: 2fr 1fr;
+      grid-template-columns: 1fr 2fr;
       gap: 3rem;
     }
 
     .section-header h2 {
       font-size: var(--text-4xl);
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 64em) {
+    .services-grid {
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 </style>

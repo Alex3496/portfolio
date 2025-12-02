@@ -94,13 +94,29 @@ const projects = (await getCollection("work"))
 								<Icon icon="linkedin-logo" size="1.33em" />
 							</Pill>
 						</a>
+						<a
+							href="/portfolio/docs/manuel-elizondo-cv.pdf" 
+							target="_blank" 
+							rel="noopener noreferrer" 
+							download
+							style="text-decoration: none;"
+						>
+							<Pill
+								styles={{
+									minHeight: "50px",
+									alignItems: "center",
+								}}
+							>
+								<LucideIcon icon="resume" size="1.33em" />
+							</Pill>
+						</a>
 					</div>
 				</Hero>
 			</header>
 		</div>
 
 		<!-- About Section -->
-		<div id="about" class="wrapper">
+		<div id="about" class="wrapper bg-intermediate">
 			<About />
 		</div>
 
