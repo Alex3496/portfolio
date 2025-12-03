@@ -14,8 +14,8 @@ const { projects = [
             title: 'Nexus',
             img: '/portfolio/assets/screenshots/nexus.png',
             img_alt: 'Screenshot of Nexus Project',
-            description: 'This is a sample project description showcasing my work in web development.',
-            tags: ['MERN', 'React', 'Node.js', 'MongoDB', 'Express'],
+            description: 'Built a material management system with order tracking, invoicing, a product marketplace, and a CRM for client activity. ',
+            tags: ['React Native', 'React', 'Node.js', 'MongoDB', 'Express'],
             projectType: 'professional',
             codeLink: null,
             urlPage: 'https://nexusnova.mx/',
@@ -26,8 +26,8 @@ const { projects = [
             title: 'Sneacare Miami',
             img: '/portfolio/assets/screenshots/sneacare.png',
             img_alt: 'Screenshot of Sneacare Miami Project',
-            description: 'This is a sample project description showcasing my work in web development.',
-            tags: ['MERN', 'React', 'Node.js', 'MongoDB', 'Express'],
+            description: 'Created a POS system for a shoe-cleaning business with Square integration, customer orders, CRM, and sales analytics to support full operational management.',
+            tags: ['Square', 'MERN', 'React', 'Node.js', 'MongoDB', 'Express'],
             projectType: 'professional',
             codeLink: null,
             urlPage: "https://sneacaremiami.com/",
@@ -38,7 +38,7 @@ const { projects = [
             title: 'ERP Manantial',
             img: '/portfolio/assets/screenshots/erp.png',
             img_alt: 'Screenshot of ERP Manantial Project',
-            description: 'This is a sample project description showcasing my work in web development.',
+            description: 'ERP platform to handle its financial information. It uses Syncfy for reliable financial data, generates reports, and includes a CRM module for managing clients.',
             tags: ['MERN', 'React', 'Node.js', 'MongoDB', 'Express'],
             projectType: 'professional',
             codeLink: null,
@@ -50,9 +50,9 @@ const { projects = [
             title: 'ZEUS Agave',
             img: '/portfolio/assets/screenshots/zeus.png',
             img_alt: 'Screenshot of ZEUS Agave Project',
-            description: 'This is a sample project description showcasing my work in web development.',
+            description: 'Fintech platform focused on agave investments, featuring an admin panel for overseeing transactions and a user portal for managing individual portfolios.',
             tags: ['MERN', 'React', 'Node.js', 'MongoDB', 'Express'],
-            projectType: 'personal',
+            projectType: 'professional',
             codeLink: null,
             urlPage: "https://zeusagave.com/",
       }
@@ -223,7 +223,7 @@ const { projects = [
   }
 
   .project-card {
-    background: var(--gray-intermediate-200);
+    background: var(--gray-999_40);
     border-radius: 0.75rem;
     overflow: hidden;
     border: 1px solid var(--gray-800);
@@ -247,7 +247,7 @@ const { projects = [
   .image-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.2);
+    background: var(--overlay-img);
     z-index: 10;
     transition: background 0.3s ease;
   }
@@ -316,10 +316,6 @@ const { projects = [
     margin-bottom: 1rem;
     line-height: 1.6;
     flex: 1;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
   }
 
   .project-tags {

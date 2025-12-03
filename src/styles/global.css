@@ -75,6 +75,7 @@
 	--theme-transition: 0.2s ease-in-out;
 
 	--intermediate-bg: #ffffff;
+	--overlay-img: rgba(0, 0, 0, 0.05);
 }
 
 :root.theme-dark {
@@ -96,7 +97,7 @@
 	--accent-regular: #1ec5b6;
 	--accent-dark: #07b7d3;
 	--accent-overlay: hsla(280, 89%, 67%, 0.33);
-	--accent-subtle-overlay: hsla(281, 81%, 36%, 0.33);
+	--accent-subtle-overlay: hsla(189, 81%, 36%, 0.33);
 	--accent-text-over: var(--gray-0);
 
 	--link-color: var(--accent-dark);
@@ -107,7 +108,7 @@
 			#ca7879,
 			var(--accent-regular),
 			var(--accent-light));
-	--gradient-stroke: linear-gradient(180deg, var(--gray-600), var(--gray-800));
+	--gradient-stroke: linear-gradient(180deg, var(--accent-dark), var(--accent-light));
 
 	--shadow-sm:
 		0px 6px 3px rgba(255, 255, 255, 0.01), 0px 4px 2px rgba(255, 255, 255, 0.01),
@@ -119,8 +120,8 @@
 		0px 62px 25px rgba(255, 255, 255, 0.01), 0px 35px 21px rgba(255, 255, 255, 0.05),
 		0px 16px 16px rgba(255, 255, 255, 0.1), 0px 4px 9px rgba(255, 255, 255, 0.12);
 
+	/*VALORES PERSONALIZADOS*/	
 	--intermediate-bg: #0f172a;
-
 	--gray-intermediate-0: #090b11;
 	--gray-intermediate-50: #141925;
 	--gray-intermediate-100: #283044;
@@ -135,6 +136,7 @@
 	--gray-intermediate-999-basis: 0, 0%, 100%;
 	--gray-intermediate-999_40: hsla(var(--gray-intermediate-999-basis), 0.4);
 	--gray-intermediate-999: #ffffff;
+	--overlay-img: rgba(0, 0, 0, 0.2);
 }
 
 html,
