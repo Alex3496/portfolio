@@ -1,4 +1,4 @@
-# Astro Starter Kit: Portfolio
+Portfolio
 
 ```sh
 npm create astro@latest 
