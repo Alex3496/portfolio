@@ -1,4 +1,4 @@
-Portfolio
+Portfolio Example
 
 ```sh
 npm create astro@latest 
